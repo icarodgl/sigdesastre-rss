@@ -1,0 +1,27 @@
+{
+  "name": "sigdesastre-rss",
+  "version": "1.0.0",
+  "description": "Capture feed rss from sites",
+  "main": "./src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "jest",
+    "start": "node ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icarodgl/sigdesastre-rss.git"
+  },
+  "keywords": [
+    "rss"
+  ],
+  "author": "icarodgl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/icarodgl/sigdesastre-rss/issues"
+  },
+  "homepage": "https://github.com/icarodgl/sigdesastre-rss#readme",
+  "dependencies": {
+    "rss-parser": "^3.7.6"
+  }
+}
