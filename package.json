@@ -22,6 +22,10 @@
   },
   "homepage": "https://github.com/icarodgl/sigdesastre-rss#readme",
   "dependencies": {
+    "axios": "^0.19.2",
     "rss-parser": "^3.7.6"
+  },
+  "devDependencies": {
+    "jest": "^25.4.0"
   }
 }
