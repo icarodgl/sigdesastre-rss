@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="/home/david/github/davidpvilaca/Adotei-back/__tests__/pet.spec.ts">
+    <testCase name="CRUD pet create pet" duration="538"/>
+    <testCase name="CRUD pet get the pet" duration="52"/>
+    <testCase name="CRUD pet update pet" duration="96"/>
+    <testCase name="CRUD pet delete pet" duration="59"/>
+  </file>
+  <file path="/home/david/github/davidpvilaca/Adotei-back/__tests__/user.spec.ts">
+    <testCase name="CRUD user create user" duration="491"/>
+    <testCase name="CRUD user get the user" duration="49"/>
+    <testCase name="CRUD user update user" duration="86"/>
+    <testCase name="CRUD user delete user" duration="51"/>
+  </file>
+  <file path="/home/david/github/davidpvilaca/Adotei-back/__tests__/institution.spec.ts">
+    <testCase name="CRUD instituition create instituition" duration="477"/>
+    <testCase name="CRUD instituition get the instituition" duration="55"/>
+    <testCase name="CRUD instituition update instituition" duration="86"/>
+    <testCase name="CRUD instituition delete instituition" duration="54"/>
+  </file>
+  <file path="/home/david/github/davidpvilaca/Adotei-back/__tests__/transaction.spec.ts">
+    <testCase name="CRUD transaction create transaction" duration="449"/>
+    <testCase name="CRUD transaction get the transaction" duration="43"/>
+    <testCase name="CRUD transaction update transaction" duration="75"/>
+    <testCase name="CRUD transaction delete transaction" duration="46"/>
+  </file>
+</testExecutions>
