@@ -1,18 +1,28 @@
-import Parser from 'rss-parser';
+import Parser, { Output } from 'rss-parser';
 import { rss } from 'model/rss';
+import { RssJson } from '../model/rssJson';
+import { Noticia } from '../model/noticia';
 let parser = new Parser();
-export async function rssToJson(sites: rss[]) {
-  let listaNoticias = [];
-  sites.forEach((site) => {
-    let feed;
-    try {
-      feed = parser.parseURL(site.url);
-    } catch (error) {
-      console.log('erro ao pegar RSS', error);
-    }
 
-    console.log(feed);
-  });
-  console.log('Parse RSS to JSON sucesso!');
-  return JSON.stringify(feed);
+export async function rssToJson(sites: rss[]) {
+  let listaNoticias: Noticia[] = [];
+  let rssjson: Output| null = null;
+
+  for (const site of sites) {
+    try {
+      rssjson = await parser.parseURL(site.url);
+      console.log(rssjson);
+    } catch (error) {
+      throw new Error('Erro rssToJson: '+ error);
+    }
+  }
+  
+  if (rssjson) {
+    rssjson.feed.items.forEach((item: Noticia) => {
+      listaNoticias.push(item)
+    });
+  }
+
+
+  return listaNoticias;
 }
