@@ -1,12 +1,16 @@
-const descritores = ["mariana", "fundão", "barragem", "samarco"];
+import { Noticia } from 'model/noticia';
+
 /**
  *
  * @param news string
  * @returns Promisse<news>
  */
-export async function filterNews(news) {
-  let filtereds = await news.filter((n) => inDescritores(n));
-  return filtereds;
+export async function filterNews(news: Noticia[], descritores: string[]) {
+  let resp = await news.filter((n: Noticia) => inDescritores(n, descritores));
+
+  //console.log(resp);
+
+  return resp;
 }
 
 /**
@@ -14,9 +18,23 @@ export async function filterNews(news) {
  * @param noticia
  * @returns boolean
  */
-function inDescritores(noticia) {
+function inDescritores(noticia: Noticia, descritores: string[]) {
+  descritores =
+    descritores.length !== 0
+      ? descritores
+      : [
+          'rompimento',
+          'mariana',
+          'fundão',
+          'barragem',
+          'samarco',
+          'rio doce',
+          'coronavírus',
+        ];
   for (let index = 0; index < descritores.length; index++) {
-    let res = noticia.indexOf(descritores[index]);
+    let res = `${noticia.conteudo} ${noticia.titulo}`
+      .toLowerCase()
+      .indexOf(descritores[index]);
     if (res != -1) {
       return true;
     }
