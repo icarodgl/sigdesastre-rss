@@ -1,0 +1,7 @@
+https://sigdesastre.herokuapp.com/rss
+
+###
+https://sigdesastre.herokuapp.com/noticias
+
+###
+https://sigdesastre.herokuapp.com/noticias/fontes

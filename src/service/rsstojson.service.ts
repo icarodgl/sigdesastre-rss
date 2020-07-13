@@ -1,11 +1,13 @@
 import Parser, { Output } from 'rss-parser';
 import { rss } from 'model/rss';
 import { Noticia, Fonte, grupoAcesso } from '../model/noticia';
+
 let parser = new Parser();
 
 export async function rssToJson(sites: rss[]) {
   let listaNoticias: any[] = [];
   let rssjson: Output | null = null;
+  let sucessos = 0;
 
   for (const site of sites) {
     try {
@@ -16,16 +18,29 @@ export async function rssToJson(sites: rss[]) {
           let fonte: Fonte = {
             nome: site.nome,
             link: `${rssjson?.link}`,
+            tipoFonte: { id: site.tipoFonteId, nome: site.tipoFonteName },
           };
           let grupoAcesso: grupoAcesso = { nome: 'todos' };
           let noticia: Noticia = {
             link: `${item.link}`,
             titulo: item.title,
             fonte: fonte,
-            conteudo: item.content,
-            dataAtualizacao: item.isoDate,
-            dataCriacao: item.isoDate,
-            dataPublicacao: item.isoDate,
+            conteudo: (item.content ?? item.contentSnippet ?? '').replace(
+              /(<([^>]+)>)/gi,
+              '',
+            ),
+            dataAtualizacao:
+              item.isoDate ??
+              item.pubDate ??
+              Date.now().toLocaleString('pt-br'),
+            dataCriacao:
+              item.isoDate ??
+              item.pubDate ??
+              Date.now().toLocaleString('pt-br'),
+            dataPublicacao:
+              item.isoDate ??
+              item.pubDate ??
+              Date.now().toLocaleString('pt-br'),
             descricao: '',
             descritores: [],
             grupoAcesso: grupoAcesso,
@@ -35,10 +50,20 @@ export async function rssToJson(sites: rss[]) {
           listaNoticias.push(noticia);
         });
       }
+      sucessos++;
     } catch (error) {
-      console.error(error);
+      console.log('ERRO ENCONTRADO NO SITE:', site.url);
+      //console.log('Erro:', error);
+      //console.error(error);
     }
+    console.log(
+      `Em andamento: ${Math.round((sucessos / sites.length) * 100)}%`,
+    );
   }
+  console.log(
+    `${sites.length} Foram cadastrados, ${sucessos} foram capturados com exito `,
+  );
+
   // console.log(listaNoticias);
   return listaNoticias;
 }

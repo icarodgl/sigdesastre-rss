@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { Noticia } from 'model/noticia';
-import bodyParser from 'body-parser';
 
-const URL = 'https://sigdesastre.herokuapp.com/noticias/';
+const URL = process.env.URL + 'noticias/';
 
 export function sendNews(news: Noticia[]) {
   news.map((n) => send(n));
@@ -19,6 +18,7 @@ export async function send(news: Noticia) {
       data: news,
     });
     console.log(response);
+    return response;
   } catch (error) {
     console.error(error);
   }

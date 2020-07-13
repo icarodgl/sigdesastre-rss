@@ -1,4 +1,13 @@
-import { filterNews, requestNews, rssToJson, sendNews } from './service/index';
+import {
+  filterNews,
+  requestNews,
+  rssToJson,
+  sendNews,
+  saveNews,
+} from './service/index';
+import { config } from 'dotenv';
+config();
+
 const run = async () => {
   // Pega os links RSS cadastrados
   console.log('Inicio do processo');
@@ -12,7 +21,8 @@ const run = async () => {
   let filtrados = await filterNews(noticias, []);
   console.log('Enviando noticias');
   // //envia as noticias filtradas para a API
-  sendNews(filtrados);
+  saveNews(filtrados);
+  //sendNews(filtrados);
   console.log('Processo finalizado');
 };
 

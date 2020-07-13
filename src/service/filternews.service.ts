@@ -1,4 +1,4 @@
-import { Noticia } from 'model/noticia';
+import { Noticia } from './../model/noticia';
 
 /**
  *
@@ -19,25 +19,30 @@ export async function filterNews(news: Noticia[], descritores: string[]) {
  * @returns boolean
  */
 function inDescritores(noticia: Noticia, descritores: string[]) {
+  let cont = 0;
   descritores =
     descritores.length !== 0
       ? descritores
       : [
           'rompimento',
-          'mariana',
-          'fundão',
           'barragem',
           'samarco',
           'rio doce',
-          'coronavírus',
+          'lama',
+          'mariana',
+          'fundão',
         ];
   for (let index = 0; index < descritores.length; index++) {
     let res = `${noticia.conteudo} ${noticia.titulo}`
       .toLowerCase()
       .indexOf(descritores[index]);
     if (res != -1) {
-      return true;
+      cont++;
     }
   }
-  return false;
+  if (cont / descritores.length > 0.2) {
+    return true;
+  } else {
+    return false;
+  }
 }
