@@ -6,18 +6,9 @@ config();
 
 const URL_RSS = process.env.URL + 'rss/';
 
-const URL_TF = process.env.URL + 'noticias/fontes/';
-
 export async function requestNews(): Promise<rss[]> {
   try {
-    let response: rss[] = await (await axios.get(URL_RSS)).data;
-
-    let tipoFonte: tipoFonte[] = await (await axios.get(URL_TF)).data;
-
-    response.map((rss) => {
-      let tfName = tipoFonte.findIndex((tf) => tf.id === rss.tipoFonteId);
-      rss.tipoFonteName = tipoFonte[tfName].nome;
-    });
+    let response: rss[] = await (await axios.get(URL_RSS)).data.data;
 
     return response;
   } catch (error) {

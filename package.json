@@ -8,7 +8,8 @@
     "test": "NODE_ENV=test jest --coverage --detectOpenHandles --forceExit",
     "test:cov": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "build": "rm -rf dist && tsc",
-    "start:prod": "node ./dist/src/index.js"
+    "start:prod": "node ./dist/index.js",
+    "start:tracking": "node ./dist/runRSSsearch.js"
   },
   "repository": {
     "type": "git",
@@ -43,6 +44,7 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "helmet": "^3.21.3",
     "rss-parser": "^3.8.0"
   }

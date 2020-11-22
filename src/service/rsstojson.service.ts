@@ -18,7 +18,7 @@ export async function rssToJson(sites: rss[]) {
           let fonte: Fonte = {
             nome: site.nome,
             link: `${rssjson?.link}`,
-            tipoFonte: { id: site.tipoFonteId, nome: site.tipoFonteName },
+            tipoFonte: { id: site.tipoFonte.id, nome: site.tipoFonte.nome },
           };
           let grupoAcesso: grupoAcesso = { nome: 'todos' };
           let noticia: Noticia = {

@@ -4,7 +4,7 @@ import { Noticia } from 'model/noticia';
 const URL = process.env.URL + 'noticias/';
 
 export function sendNews(news: Noticia[]) {
-  news.map((n) => send(n));
+  news.map(async (n) => await send(n));
   console.log(`${news.length} Noticias enviadas`);
 }
 
@@ -17,9 +17,14 @@ export async function send(news: Noticia) {
       baseURL: URL,
       data: news,
     });
-    console.log(response);
     return response;
   } catch (error) {
-    console.error(error);
+    if (error.response) {
+      console.log('Status: ', error.response.status);
+      //console.log(error.response.data);
+      //console.log(error.response.headers);
+    } else {
+      console.log(error);
+    }
   }
 }

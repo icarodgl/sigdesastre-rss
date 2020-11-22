@@ -1,20 +1,20 @@
 export class grupoAcesso {
-  readonly nome?: string;
+  nome?: string;
 }
 
 export class tipoFonte {
-  readonly id?: number;
-  readonly nome?: string;
+  id?: number;
+  nome?: string;
 }
 
 export interface Fonte {
-  readonly link: string | undefined;
+  link: string | undefined;
 
-  readonly nome?: string | undefined;
+  nome?: string | undefined;
 
-  readonly descricao?: string | undefined;
+  descricao?: string | undefined;
 
-  readonly tipoFonte?: tipoFonte | undefined;
+  tipoFonte?: tipoFonte | undefined;
 }
 export interface Noticia {
   link: string | undefined;
