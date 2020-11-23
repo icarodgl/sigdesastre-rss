@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node-dev src/index.ts",
+    "start:tracking": "ts-node-dev src/runRSSsearch.ts",
     "test": "NODE_ENV=test jest --coverage --detectOpenHandles --forceExit",
     "test:cov": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "build": "rm -rf dist && tsc",
     "start:prod": "node ./dist/index.js",
-    "start:tracking": "node ./dist/runRSSsearch.js"
+    "start:prod:tracking": "node ./dist/runRSSsearch.js"
   },
   "repository": {
     "type": "git",
